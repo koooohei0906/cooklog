@@ -82,5 +82,6 @@ SNSにあるたくさんのレシピを使用して毎日いろいろな料理�
 - バックエンド：Ruby, Ruby on Rails
 - データベース：PostgreSQL
 - インフラ：Render, Neon
+- 認証：Devise
 - ストレージ：Active Storage, S3
 - 今後要検討：LINE Messaging API（リマインド通知の送信に利用）
