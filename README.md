@@ -79,11 +79,13 @@ SNSにあるたくさんのレシピを使用して毎日いろいろな料理�
 - 料理記録のシェア機能
 
 ## 使用する技術スタック
-- フロントエンド：JavaScript, Turbo, Tailwind
-- バックエンド：Ruby 3.3.6, Ruby on Rails 7.2.2
-- データベース：PostgreSQL
-- インフラ：Render, Neon
-- 環境構築：Docker
-- 認証：Devise
-- ストレージ：Active Storage, S3
-- 今後要検討：LINE Messaging API（リマインド通知の送信に利用）
+| 項目       | 内容                                                             |
+| ---------- | ---------------------------------------------------------------- |
+| フロントエンド | JavaScript, Turbo, Tailwind                                     |
+| バックエンド | Ruby 3.3.6, Ruby on Rails 7.2.2                                  |
+| データベース | PostgreSQL 16.11                                                 |
+| インフラ   | Render, Neon                                                     |
+| 環境構築   | Docker                                                           |
+| 認証       | Devise                                                           |
+| ストレージ | Active Storage, S3                                               |
+| 今後要検討 | LINE Messaging API（リマインド通知の送信に利用予定）              |
