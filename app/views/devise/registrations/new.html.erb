@@ -1,29 +1,44 @@
-<h2>Sign up</h2>
+<div class="flex justify-center mt-16">
+  <div class="w-full max-w-xl bg-gray-200 rounded-lg px-8 py-10 mx-4">
+    <h2 class="text-center text-2xl font-bold mb-10">アカウントを作成</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-8" }) do |f| %>
+
+      <!-- ユーザー名 -->
+      <div>
+        <%= f.label :name, "ユーザー名", class: "block mb-2 text-lg font-semibold" %>
+        <%= f.text_field :name, autofocus: true, class: "w-full rounded-md border border-gray-300 px-3 py-3 bg-white" %>
+      </div>
+
+      <!-- メールアドレス -->
+      <div>
+        <%= f.label :email, "メールアドレス", class: "block mb-2 text-lg font-semibold" %>
+        <%= f.email_field :email, autocomplete: "email", class: "w-full rounded-md border border-gray-300 px-3 py-3 bg-white" %>
+      </div>
+
+      <!-- パスワード -->
+      <div>
+        <%= f.label :password, "パスワード", class: "block mb-2 text-lg font-semibold" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "w-full rounded-md border border-gray-300 px-3 py-3 bg-white" %>
+      </div>
+
+      <!-- パスワード（確認） -->
+      <div>
+        <%= f.label :password_confirmation, "パスワード（確認）", class: "block mb-2 text-lg font-semibold" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full rounded-md border border-gray-300 px-3 py-3 bg-white" %>
+      </div>
+
+      <!-- アカウント作成ボタン -->
+      <div>
+        <%= f.submit "アカウントを作成", class: "w-full py-3 rounded-md font-bold bg-[#FFC943] text-white" %>
+      </div>
+    <% end %>
+
+    <!-- 既にアカウントをお持ちの方 -->
+    <div class="mt-6 text-center text-sm">
+      <%= link_to "既にアカウントをお持ちの方", new_session_path(resource_name), class: "underline" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
