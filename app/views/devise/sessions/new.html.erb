@@ -1,0 +1,35 @@
+<div class="flex justify-center mt-16">
+  <div class="w-full max-w-xl bg-gray-200 rounded-lg px-8 py-10 mx-4">
+    <h2 class="text-center text-2xl font-bold mb-10">ログイン</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-8" }) do |f| %>
+
+      <!-- メールアドレス -->
+      <div>
+        <%= f.label :email, "メールアドレス", class: "block mb-2 text-lg font-semibold" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full rounded-md border border-gray-300 px-3 py-3 bg-white" %>
+      </div>
+
+      <!-- パスワード -->
+      <div>
+        <%= f.label :password, "パスワード", class: "block mb-2 text-lg font-semibold" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "w-full rounded-md border border-gray-300 px-3 py-3 bg-white" %>
+      </div>
+
+      <!-- パスワードを忘れた方 -->
+      <div class="text-center text-sm">
+        <%= link_to "パスワードを忘れた方", new_password_path(resource_name), class: "underline" %>
+      </div>
+
+      <!-- ログインボタン -->
+      <div>
+        <%= f.submit "ログイン", class: "w-full py-3 rounded-md font-bold bg-[#FFC943] text-white" %>
+      </div>
+    <% end %>
+
+    <!-- アカウント作成はこちら -->
+    <div class="mt-6 text-center text-sm">
+      アカウント作成は<%= link_to "こちら", new_registration_path(resource_name), class: "ml-1 underline" %>
+    </div>
+  </div>
+</div>
