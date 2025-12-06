@@ -81,11 +81,12 @@ SNSにあるたくさんのレシピを使用して毎日いろいろな料理�
 ## 使用する技術スタック
 | 項目       | 内容                                                             |
 | ---------- | ---------------------------------------------------------------- |
-| フロントエンド | JavaScript, Turbo, Tailwind                                     |
+| フロントエンド | JavaScript, Turbo, Tailwind 3.4.17                             |
 | バックエンド | Ruby 3.3.6, Ruby on Rails 7.2.3                                  |
 | データベース | PostgreSQL 16.11                                                 |
 | インフラ   | Render, Neon                                                     |
-| 環境構築   | Docker                                                           |
+| 環境構築   | Docker 4.9.4                                                     |
 | 認証       | Devise                                                           |
+| テスト     | RSpec 6.1.5                                                      |
 | ストレージ | Active Storage, S3                                               |
 | 今後要検討 | LINE Messaging API（リマインド通知の送信に利用予定）              |
