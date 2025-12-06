@@ -63,3 +63,6 @@ end
 # Tailwindの導入
 gem "tailwindcss-rails"
 gem "tailwindcss-ruby", "3.4.17"
+
+# Deviseの導入
+gem "devise", "~> 4.9"
