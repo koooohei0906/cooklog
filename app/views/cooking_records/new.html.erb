@@ -1,4 +1,13 @@
 <h1>料理記録の新規登録</h1>
+
+<% if @cooking_record.errors.any? %>
+  <ul>
+    <% @cooking_record.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @cooking_record do |f| %>
   <div>
     <%= f.label :cooked_on, '作った日' %><br>
@@ -17,11 +26,11 @@
 
   <div>
     <%= f.label :memo, 'メモ' %><br>
-    <%= f.text_field :memo %>
+    <%= f.text_area :memo, rows: 5, cols: 50 %>
   </div>
 
   <div>
     <%= f.submit '保存する', class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#FFC943]" %>
   </div>
 <% end %>
-<%= link_to 'ホームに戻る（後から消す）', root_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
+<%= link_to 'ホームに戻る', root_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
