@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+/* エラーメッセージでブロック要素による変な改行が出ないように */
+.field_with_errors {
+  display: inline-block;
+}

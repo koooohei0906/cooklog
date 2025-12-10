@@ -15,6 +15,10 @@ class CookingRecordsController < ApplicationController
     end
   end
 
+  def index
+    @cooking_records = CookingRecord.includes(:user).order(cooked_on: :desc)
+  end
+
   private
 
   def cooking_record_params
