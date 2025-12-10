@@ -1,0 +1,27 @@
+<h1>料理記録の新規登録</h1>
+<%= form_with model: @cooking_record do |f| %>
+  <div>
+    <%= f.label :cooked_on, '作った日' %><br>
+    <%= f.date_field :cooked_on %>
+  </div>
+
+  <div>
+    <%= f.label :dish_name, '料理名' %><br>
+    <%= f.text_field :dish_name %>
+  </div>
+
+  <div>
+    <%= f.label :recipe_url, '参考レシピ（URL）' %><br>
+    <%= f.text_field :recipe_url %>
+  </div>
+
+  <div>
+    <%= f.label :memo, 'メモ' %><br>
+    <%= f.text_field :memo %>
+  </div>
+
+  <div>
+    <%= f.submit '保存する'%>
+  </div>
+<% end %>
+<%= link_to 'ホームに戻る（後から消す）', root_path %>
