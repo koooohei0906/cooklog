@@ -19,6 +19,10 @@ class CookingRecordsController < ApplicationController
     @cooking_records = CookingRecord.includes(:user).order(cooked_on: :desc)
   end
 
+  def show
+    @cooking_record = current_user.cooking_records.find(params[:id])
+  end
+
   private
 
   def cooking_record_params
