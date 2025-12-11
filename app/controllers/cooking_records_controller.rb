@@ -1,5 +1,6 @@
 class CookingRecordsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_cooking_record, only: %i[ show edit update destroy ]
 
   def new
     @cooking_record = CookingRecord.new
@@ -19,13 +20,30 @@ class CookingRecordsController < ApplicationController
     @cooking_records = CookingRecord.includes(:user).order(cooked_on: :desc)
   end
 
-  def show
-    @cooking_record = current_user.cooking_records.find(params[:id])
+  def show; end
+
+  def edit; end
+
+  def update
+    if @cooking_record.update(cooking_record_params)
+      redirect_to @cooking_record, notice: "料理記録を編集しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @cooking_record.destroy
+    redirect_to cooking_records_path, notice: "料理記録を削除しました"
   end
 
   private
 
   def cooking_record_params
     params.require(:cooking_record).permit(:cooked_on, :dish_name, :recipe_url, :memo)
+  end
+
+  def set_cooking_record
+    @cooking_record = current_user.cooking_records.find(params[:id])
   end
 end
