@@ -1,6 +1,6 @@
 class CookingRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cooking_record, only: %i[ show edit update ]
+  before_action :set_cooking_record, only: %i[ show edit update destroy ]
 
   def new
     @cooking_record = CookingRecord.new
@@ -30,6 +30,11 @@ class CookingRecordsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @cooking_record.destroy
+    redirect_to cooking_records_path, notice: "料理記録を削除しました"
   end
 
   private

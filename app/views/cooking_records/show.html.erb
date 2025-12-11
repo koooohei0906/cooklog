@@ -29,7 +29,7 @@
 
   <div class="mt-8 space-y-4">
     <%= link_to "編集する", edit_cooking_record_path(@cooking_record), class: "block py-3 rounded text-center text-sm font-semibold bg-gray-200" %>
-    <%= link_to "削除する", '#', class: "block py-3 rounded text-center text-sm font-semibold bg-[#D32F2F] text-white" %>
+    <%= link_to "削除する", cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "block py-3 rounded text-center text-sm font-semibold bg-[#D32F2F] text-white" %>
   </div>
   <p class="mt-4 text-center text-sm"><%= link_to "一覧に戻る", cooking_records_path, class: "underline text-gray-700"%>
 </div>
