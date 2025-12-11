@@ -1,36 +1,38 @@
-<h1>料理記録の新規登録</h1>
+<div class="max-w-sm mx-auto px-4">
+  <h1 class="text-lg font-semibold mb-2">料理記録の新規登録</h1>
 
-<% if @cooking_record.errors.any? %>
-  <ul>
-    <% @cooking_record.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if @cooking_record.errors.any? %>
+    <ul>
+      <% @cooking_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
-<%= form_with model: @cooking_record do |f| %>
-  <div>
-    <%= f.label :cooked_on, '作った日' %><br>
-    <%= f.date_field :cooked_on %>
-  </div>
+  <%= form_with model: @cooking_record, class: "space-y-4" do |f| %>
+    <div>
+      <%= f.label :cooked_on, '作った日', class: "text-base font-bold" %><br>
+      <%= f.date_field :cooked_on, class: "w-full mt-2 p-3 rounded text-sm bg-gray-200 text-gray-700" %>
+    </div>
 
-  <div>
-    <%= f.label :dish_name, '料理名' %><br>
-    <%= f.text_field :dish_name %>
-  </div>
+    <div>
+      <%= f.label :dish_name, '料理名', class: "text-base font-bold" %><br>
+      <%= f.text_field :dish_name, class: "w-full mt-2 p-3 rounded text-sm bg-gray-200" %>
+    </div>
 
-  <div>
-    <%= f.label :recipe_url, '参考レシピ（URL）' %><br>
-    <%= f.text_field :recipe_url %>
-  </div>
+    <div>
+      <%= f.label :recipe_url, '参考レシピ（URL）', class: "text-base font-bold" %><br>
+      <%= f.text_field :recipe_url, class: "w-full mt-2 p-3 rounded text-sm bg-gray-200" %>
+    </div>
 
-  <div>
-    <%= f.label :memo, 'メモ' %><br>
-    <%= f.text_area :memo, rows: 5, cols: 50 %>
-  </div>
+    <div>
+      <%= f.label :memo, 'メモ', class: "text-base font-bold" %><br>
+      <%= f.text_area :memo, rows: 5, cols: 50, class: "w-full mt-2 p-3 rounded text-sm bg-gray-200" %>
+    </div>
 
-  <div>
-    <%= f.submit '保存する', class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#FFC943]" %>
-  </div>
-<% end %>
-<%= link_to 'ホームに戻る', root_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
+    <div>
+      <%= f.submit '保存する', class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#FFC943]" %>
+    </div>
+  <% end %>
+  <%= link_to 'ホームに戻る', root_path, class: "mt-2 inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
+</div>
