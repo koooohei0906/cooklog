@@ -23,6 +23,10 @@ class CookingRecordsController < ApplicationController
     @cooking_record = current_user.cooking_records.find(params[:id])
   end
 
+  def edit
+    @cooking_record = current_user.cooking_records.find(params[:id])
+  end
+
   private
 
   def cooking_record_params
