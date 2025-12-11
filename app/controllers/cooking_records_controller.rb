@@ -20,13 +20,9 @@ class CookingRecordsController < ApplicationController
     @cooking_records = CookingRecord.includes(:user).order(cooked_on: :desc)
   end
 
-  def show
+  def show; end
 
-  end
-
-  def edit
-
-  end
+  def edit; end
 
   def update
     if @cooking_record.update(cooking_record_params)
