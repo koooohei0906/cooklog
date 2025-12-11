@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "top#index"
-  resources :cooking_records, only: %i[ new create index ]
+  resources :cooking_records, only: %i[ new create index show ]
 
   # --- ここから下はシステム用のルート ---
 

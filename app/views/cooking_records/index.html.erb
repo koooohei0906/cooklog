@@ -1,9 +1,14 @@
 <%= link_to '戻る', root_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
-<% if @cooking_records.present? %>
-  <% @cooking_records.each do |cooking_record| %>
-    <p>
-      作った日: <%= cooking_record.cooked_on.strftime("%Y/%m/%d") %><br>
-      料理名: <%= cooking_record.dish_name %>
-    </p>
+<div class="p-4 space-y-4">
+  <% if @cooking_records.present? %>
+    <% @cooking_records.each do |cooking_record| %>
+      <%= link_to cooking_record_path(cooking_record), class: "p-4 rounded bg-gray-100 block" do %>
+        <p>
+          作った日: <%= cooking_record.cooked_on.strftime("%Y/%m/%d") %><br>
+          料理名: <%= cooking_record.dish_name %>
+        </p>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+
