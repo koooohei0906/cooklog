@@ -19,19 +19,7 @@
   </head>
 
   <body>
-    <header class="bg-gray-200">
-      <div class="max-w-5xl mx-auto flex items-center justify-end gap-8 py-4 px-6">
-        <% if user_signed_in? %>
-          <!-- ログイン済みならログアウトだけ表示 -->
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "font-bold" %>
-        <% else %>
-          <!-- ログインリンク -->
-          <%= link_to "ログイン", new_user_session_path, class: "font-bold" %>
-          <!-- 会員登録ボタン -->
-          <%= link_to "会員登録", new_user_registration_path, class: "inline-block rounded-full px-6 py-2 font-bold text-white bg-[#FFC943]" %>
-        <% end %>
-      </div>
-    </header>
+    <%= render 'shared/header' %>
     <main class="container mx-auto mt-28 px-5">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
