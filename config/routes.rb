@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root "top#index"
+  root "pages#home"
   resources :cooking_records
+  resource :dashboard, only: [ :show ]
 
   # --- ここから下はシステム用のルート ---
 

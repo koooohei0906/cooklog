@@ -1,4 +1,4 @@
-<%= link_to '戻る', root_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
+<%= link_to 'ホームに戻る', dashboard_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
 <div class="p-4 space-y-4">
   <% if @cooking_records.present? %>
     <% @cooking_records.each do |cooking_record| %>
