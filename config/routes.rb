@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  get "dashboards/show"
   devise_for :users
 
-  root "top#index"
+  root "pages#home"
   resources :cooking_records
   resource :dashboard, only: [ :show ]
 
