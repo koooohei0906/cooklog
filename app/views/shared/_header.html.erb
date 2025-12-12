@@ -3,7 +3,7 @@
     <% if user_signed_in? %>
       <!-- ログイン済み -->
       <p class="text-left">ロゴ</p>
-      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "font-bold ml-auto" %>
+      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "font-bold ml-auto text-[#D32F2F]" %>
     <% else %>
       <!-- 未ログイン -->
       <p class="text-left">ロゴ</p>
