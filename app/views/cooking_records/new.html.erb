@@ -1,4 +1,4 @@
-<div class="max-w-sm mx-auto px-4">
+<div class="max-w-xl mx-auto px-4">
   <h1 class="text-lg font-semibold mb-2">料理記録の新規登録</h1>
 
   <% if @cooking_record.errors.any? %>
@@ -31,8 +31,9 @@
     </div>
 
     <div>
-      <%= f.submit '保存する', class: "inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#FFC943]" %>
+      <%= f.submit '保存する', class: "mt-4 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#FFC943]" %>
     </div>
   <% end %>
-  <%= link_to 'ホームに戻る', dashboard_path, class: "mt-2 inline-flex h-12 items-center justify-center rounded-md px-6 bold font-bold text-white bg-[#212121]" %>
+  <%= link_to 'ホームに戻る', dashboard_path, class: "mt-4 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#212121]" %>
+
 </div>

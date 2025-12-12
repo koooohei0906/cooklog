@@ -1,35 +1,35 @@
-<div class="max-w-sm mx-auto px-4">
+<div class="max-w-xl mx-auto px-4">
   <h1 class="text-lg font-semibold mb-2">料理記録の詳細</h1>
 
   <div class="p-4 rounded bg-gray-100 space-y-4">
     <div>
-      <p class="text-sm font-bold">作った日</p>
-      <p class="mt-1 text-sm"><%= @cooking_record.cooked_on.strftime("%Y年%m月%d日") %></p>
+      <p class="text-base font-bold">作った日</p>
+      <p class="mt-1 text-base"><%= @cooking_record.cooked_on.strftime("%Y年%m月%d日") %></p>
     </div>
 
     <div>
-      <p class="text-sm font-bold">料理名</p>
-      <p class="mt-1 text-sm"><%= @cooking_record.dish_name %></p>
+      <p class="text-base font-bold">料理名</p>
+      <p class="mt-1 text-base"><%= @cooking_record.dish_name %></p>
     </div>
 
     <div>
-      <p class="text-sm font-bold">参考レシピ（URL）</p>
+      <p class="text-base font-bold">参考レシピ（URL）</p>
       <% if @cooking_record.recipe_url.present? %>
-        <%= link_to 'レシピを見る', @cooking_record.recipe_url, target: "_blank", rel: "noopener noreferrer", class: 'mt-1 text-sm text-blue-600' %>
+        <%= link_to 'レシピを見る', @cooking_record.recipe_url, target: "_blank", rel: "noopener noreferrer", class: 'mt-1 text-base text-blue-600' %>
       <% end %>
     </div>
 
     <div>
-      <p class="text-sm font-bold">メモ</p>
-      <div class="mt-1 text-sm">
+      <p class="text-base font-bold">メモ</p>
+      <div class="mt-1 text-base">
         <%= simple_format(@cooking_record.memo) %>
       </div>
     </div>
   </div>
 
   <div class="mt-8 space-y-4">
-    <%= link_to "編集する", edit_cooking_record_path(@cooking_record), class: "block py-3 rounded text-center text-sm font-semibold bg-gray-200" %>
-    <%= link_to "削除する", cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "block py-3 rounded text-center text-sm font-semibold bg-[#D32F2F] text-white" %>
+    <%= link_to "編集する", edit_cooking_record_path(@cooking_record), class: "block py-3 rounded text-center text-base font-semibold bg-gray-200" %>
+    <%= link_to "削除する", cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "block py-3 rounded text-center text-base font-semibold bg-[#D32F2F] text-white" %>
   </div>
   <p class="mt-4 text-center text-sm"><%= link_to "一覧に戻る", cooking_records_path, class: "underline text-gray-700"%>
 </div>
