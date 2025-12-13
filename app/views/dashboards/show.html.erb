@@ -1,6 +1,10 @@
-<h1 class="text-lg font-semibold mb-4 px-4">ダッシュボード画面</h1>
+<div class="max-w-xl mx-auto px-4">
+  <h1 class="mb-4 text-lg font-semibold">ホーム画面</h1>
+  <div class="flex flex-wrap gap-4">
+    <%= link_to '料理記録を作成する', new_cooking_record_path,
+      class: "inline-flex h-12 items-center justify-center px-6 rounded-md font-bold text-white bg-[#FFC943]" %>
 
-<div class="px-4">
-  <%= link_to '料理記録を作成する', new_cooking_record_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 font-bold text-white bg-[#FFC943]" %>
-  <%= link_to '料理記録一覧', cooking_records_path, class: "inline-flex h-12 items-center justify-center rounded-md px-6 font-bold text-white bg-[#212121]" %>
+    <%= link_to '料理記録一覧', cooking_records_path,
+      class: "inline-flex h-12 items-center justify-center px-6 rounded-md font-bold text-white bg-[#212121]" %>
+  </div>
 </div>
