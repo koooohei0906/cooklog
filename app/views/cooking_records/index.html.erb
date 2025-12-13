@@ -1,4 +1,5 @@
-<div class="px-4">
+<div class="max-w-xl mx-auto px-4">
+  <h1 class="mb-2 block max-w-xl mx-auto text-lg font-semibold ">料理記録の一覧</h1>
   <%= link_to 'ホームに戻る', dashboard_path, class: "mt-4 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#212121]" %>
   <div class="pt-4 block w-full max-w-xl mx-auto space-y-4">
     <% if @cooking_records.present? %>
