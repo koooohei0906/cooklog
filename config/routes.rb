@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  get "settings/show"
   devise_for :users
 
   root "pages#home"
   resources :cooking_records
   resource :dashboard, only: [ :show ]
+  resource :setting, only: [ :show ]
 
   # --- ここから下はシステム用のルート ---
 
