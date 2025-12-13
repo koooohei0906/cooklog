@@ -1,7 +1,7 @@
 <div class="max-w-xl mx-auto px-4">
   <h1 class="text-lg font-semibold mb-2">料理記録の詳細</h1>
 
-  <div class="p-4 rounded bg-gray-100 space-y-4">
+  <div class="p-4 rounded-md bg-gray-100 space-y-4">
     <div>
       <p class="text-base font-bold">作った日</p>
       <p class="mt-1 text-base"><%= @cooking_record.cooked_on.strftime("%Y年%m月%d日") %></p>
@@ -28,8 +28,8 @@
   </div>
 
   <div class="mt-8 space-y-4">
-    <%= link_to "編集する", edit_cooking_record_path(@cooking_record), class: "block py-3 rounded text-center text-base font-semibold bg-gray-200" %>
-    <%= link_to "削除する", cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "block py-3 rounded text-center text-base font-semibold bg-[#D32F2F] text-white" %>
+    <%= link_to "編集する", edit_cooking_record_path(@cooking_record), class: "block py-3 rounded-md text-center text-base font-semibold bg-gray-200" %>
+    <%= link_to "削除する", cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "block py-3 rounded-md text-center text-base font-semibold bg-[#D32F2F] text-white" %>
   </div>
   <p class="mt-4 text-center text-sm"><%= link_to "一覧に戻る", cooking_records_path, class: "underline text-gray-700"%>
 </div>

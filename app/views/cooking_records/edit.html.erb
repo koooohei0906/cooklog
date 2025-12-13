@@ -12,22 +12,22 @@
   <%= form_with model: @cooking_record, class: "space-y-4" do |f| %>
     <div>
       <%= f.label :cooked_on, '作った日', class: "text-base font-bold" %><br>
-      <%= f.date_field :cooked_on, class: "w-full mt-2 p-3 rounded text-base bg-gray-200 text-gray-700" %>
+      <%= f.date_field :cooked_on, class: "w-full mt-2 p-3 rounded-md text-base bg-gray-200 text-gray-700" %>
     </div>
 
     <div>
       <%= f.label :dish_name, '料理名', class: "text-base font-bold" %><br>
-      <%= f.text_field :dish_name, class: "w-full mt-2 p-3 rounded text-base bg-gray-200" %>
+      <%= f.text_field :dish_name, class: "w-full mt-2 p-3 rounded-md text-base bg-gray-200" %>
     </div>
 
     <div>
       <%= f.label :recipe_url, '参考レシピ（URL）', class: "text-base font-bold" %><br>
-      <%= f.text_field :recipe_url, class: "w-full mt-2 p-3 rounded text-base bg-gray-200" %>
+      <%= f.text_field :recipe_url, class: "w-full mt-2 p-3 rounded-md text-base bg-gray-200" %>
     </div>
 
     <div>
       <%= f.label :memo, 'メモ', class: "text-base font-bold" %><br>
-      <%= f.text_area :memo, rows: 5, class: "w-full mt-2 p-3 rounded text-base bg-gray-200" %>
+      <%= f.text_area :memo, rows: 5, class: "w-full mt-2 p-3 rounded-md text-base bg-gray-200" %>
     </div>
 
     <div>

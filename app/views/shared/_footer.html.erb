@@ -2,17 +2,18 @@
   <div class="max-w-5xl mx-auto flex items-center py-4 px-6">
     <% if user_signed_in? %>
       <!-- ログイン済み -->
-      <!-- SP版 -->
-      <div class="mx-auto flex items-center gap-8 font-bold">
-        <%= link_to "ホーム", dashboard_path, class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
-        <%= link_to "記録", cooking_records_path, class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
-        <%= link_to "追加", new_cooking_record_path, class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
-        <%= link_to "Tips", '#', class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
-        <%= link_to "設定", '#', class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
-      </div>
+        <!-- SP版 -->
+        <div class="mx-auto flex items-center gap-8 font-bold">
+          <%= link_to "ホーム", dashboard_path, class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
+          <%= link_to "記録", cooking_records_path, class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
+          <%= link_to "追加", new_cooking_record_path, class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
+          <%= link_to "Tips", '#', class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
+          <%= link_to "設定", setting_path, class: "py-1 px-4 rounded-md font-bold text-black bg-white" %>
+        </div>
+        <!-- 追ってPC版入れる -->
     <% else %>
       <!-- 未ログイン -->
-      <p class="text-left p-2 bg-white rounded">ロゴ</p>
+      <p class="text-left p-2 bg-white rounded-md">ロゴ</p>
       <div class="ml-auto flex items-center gap-8 ">
         <%= link_to "利用規約", '#', class: "font-bold" %>
         <%= link_to "プライバシーポリシー", '#', class: "font-bold" %>
