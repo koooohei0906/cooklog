@@ -1,7 +1,8 @@
 <div class="max-w-xl mx-auto px-4">
-  <h1 class="mb-2 block max-w-xl mx-auto text-lg font-semibold ">料理記録の一覧</h1>
-  <%= link_to 'ホームに戻る', dashboard_path, class: "mt-4 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#212121]" %>
-  <div class="pt-4 block w-full max-w-xl mx-auto space-y-4">
+  <h1 class="mb-4 block max-w-xl mx-auto text-lg font-semibold ">料理記録の一覧</h1>
+  <%= link_to 'ホームに戻る', dashboard_path, class: "mb-5 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#212121]" %>
+  <p class="mb-4">☑️ これまでの記録<%= current_user.cooking_records.count %>件</p>
+  <div class="mb-4 block w-full max-w-xl mx-auto space-y-4">
     <% if @cooking_records.present? %>
       <% @cooking_records.each do |cooking_record| %>
         <%= link_to cooking_record_path(cooking_record), class: "p-4 rounded bg-gray-100 block" do %>
