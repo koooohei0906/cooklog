@@ -1,2 +1,19 @@
-<p class="text-left p-2 bg-white rounded-md">ロゴ</p>
-<%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "font-bold ml-auto text-[#D32F2F]" %>
+<header class="h-14 px-4 flex items-center justify-between border-b">
+  <%= link_to "Cooklog", dashboard_path, class: "font-bold" %>
+  <button type="button" data-action="click->menu#toggle" class="p-2" aria-label="メニューを開く" aria-expanded="false">
+    <!-- ハンバーガーメニュー（Feather icons） -->
+    <svg data-hamburger-target="iconOpen" class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6"  x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+
+    <!-- xアイコン（Feather icons） -->
+    <svg data-hamburger-target="iconClose" class="w-6 h-6 hidden" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6"  y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
+</header>
