@@ -1,0 +1,21 @@
+<nav aria-label="グローバルナビ" class="fixed bottom-0 inset-x-0 z-50 h-14 bg-white border-t">
+  <div class="mx-auto max-w-screen-sm h-full px-6">
+    <ul class="grid grid-cols-5 h-full">
+      <li class="h-full">
+        <%= link_to "ホーム", dashboard_path, class: "h-full flex items-center justify-center" %>
+      </li>
+      <li class="h-full">
+        <%= link_to "一覧", cooking_records_path, class: "h-full flex items-center justify-center" %>
+      </li>
+      <li class="h-full">
+        <%= link_to "追加", new_cooking_record_path, class: "h-full flex items-center justify-center" %>
+      </li>
+      <li class="h-full">
+        <%= link_to "Tips", "#", class: "h-full flex items-center justify-center" %>
+      </li>
+      <li class="h-full">
+        <%= link_to "設定", setting_path, class: "h-full flex items-center justify-center" %>
+      </li>
+    </ul>
+  </div>
+</nav>
