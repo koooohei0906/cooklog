@@ -18,13 +18,41 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= render 'shared/header' %>
-    <main class="container mx-auto mt-28 px-5">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+  <body class="min-h-screen">
+  <% if user_signed_in? %>
+    <!-- SPヘッダー（ログイン中） -->
+    <div class="md:hidden">
+      <%= render "shared/header/signed_in_sp" %>
+    </div>
+
+    <div class="md:flex md:min-h-screen">
+      <!-- PC左サイドバー（ログイン中） -->
+      <aside class="hidden md:block md:w-64">
+        <%= render "shared/nav/sidebar_pc" %>
+      </aside>
+
+      <!-- メイン -->
+      <main class="p-4 pt-16 pb-16 md:pb-0 flex-1">
+        <%= yield %>
+      </main>
+    </div>
+
+    <!-- SP下グロナビ（ログイン中） -->
+    <div class="md:hidden">
+      <%= render "shared/nav/global_nav_bottom_sp" %>
+    </div>
+
+  <% else %>
+    <!-- SP/PC共通ヘッダー（ログアウト中） -->
+    <%= render "shared/header/signed_out_shared" %>
+
+    <!-- メイン -->
+    <main class="px-4 py-16">
       <%= yield %>
     </main>
-    <%= render 'shared/footer' %>
-  </body>
+
+    <!-- SP/PC共通フッター（ログアウト中） -->
+    <%= render "shared/footer/signed_out_shared" %>
+  <% end %>
+</body>
 </html>
