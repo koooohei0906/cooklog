@@ -17,12 +17,30 @@
 
       <!-- メニュー本体（画面右外→スライドイン） -->
       <div id="mobile-menu" class="fixed inset-0 z-40 h-screen w-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out" data-hamburger-target="panel" data-action="click->hamburger#closeOnBackdrop">
-        <nav class="flex h-full items-center justify-center" aria-label="Mobile">
-          <ul class="flex flex-col items-center gap-8 text-2xl">
-            <li><%= link_to "About", "#", class: "text-black no-underline", data: { action: "click->hamburger#close" } %></li>
-            <li><%= link_to "About", "#", class: "text-black no-underline", data: { action: "click->hamburger#close" } %></li>
-            <li><%= link_to "About", "#", class: "text-black no-underline", data: { action: "click->hamburger#close" } %></li>
-          </ul>
+        <nav class="flex h-full flex-col items-center justify-center" aria-label="Mobile">
+          <div class="flex flex-col items-center gap-8 text-md font-semibold text-black">
+            
+            <!-- 1: ホーム〜Tips -->
+            <ul class="flex flex-col items-center gap-4">
+              <li><%= link_to "ホーム", dashboard_path, data: { action: "click->hamburger#close" } %></li>
+              <li><%= link_to "料理記録一覧", cooking_records_path, data: { action: "click->hamburger#close" } %></li>
+              <li><%= link_to "料理記録を追加", new_cooking_record_path, data: { action: "click->hamburger#close" } %></li>
+              <li><%= link_to "習慣化Tips", '#', data: { action: "click->hamburger#close" } %></li>
+            </ul>
+
+            <!-- 2: 利用規約〜お問い合わせ -->
+            <ul class="flex flex-col items-center gap-4">
+              <li><%= link_to "利用規約", '#', data: { action: "click->hamburger#close" } %></li>
+              <li><%= link_to "プライバシーポリシー", '#', data: { action: "click->hamburger#close" } %></li>
+              <li><%= link_to "お問い合わせ・不具合報告", '#', data: { action: "click->hamburger#close" } %></li>
+            </ul>
+
+            <!-- 3: ログアウト -->
+            <ul class="flex flex-col items-center gap-4">
+              <li><%= link_to "ログアウト", destroy_user_session_path, data: { action: "click->hamburger#close" }, class: "text-red-600" %></li>
+            </ul>
+
+          </div>
         </nav>
       </div>
     </div>
