@@ -29,9 +29,7 @@
     <div>
       <p class="text-base font-bold">料理写真</p>
       <% if @cooking_record.photo.attached? %>
-        <div>
-          <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md" %>
-        </div>
+        <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md" %>
       <% else %>
         <p class="text-base">写真はありません</p>
       <% end %>
