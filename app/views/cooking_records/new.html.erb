@@ -11,6 +11,11 @@
 
   <%= form_with model: @cooking_record, class: "space-y-4" do |f| %>
     <div>
+      <%= f.label :photo, '料理写真', class: "text-base font-bold" %><br>
+      <%= f.file_field :photo, accept: "image/*", class: "w-full mt-2 p-3 rounded-md text-sm bg-gray-200" %>
+    </div>
+
+    <div>
       <%= f.label :cooked_on, '作った日', class: "text-base font-bold" %><br>
       <%= f.date_field :cooked_on, class: "w-full mt-2 p-3 rounded-md text-sm bg-gray-200 text-gray-700" %>
     </div>
@@ -28,11 +33,6 @@
     <div>
       <%= f.label :memo, 'メモ', class: "text-base font-bold" %><br>
       <%= f.text_area :memo, rows: 5, cols: 50, class: "w-full mt-2 p-3 rounded-md text-sm bg-gray-200" %>
-    </div>
-
-    <div>
-      <%= f.label :photo, '写真', class: "text-base font-bold" %><br>
-      <%= f.file_field :photo, accept: "image/*", class: "w-full mt-2 p-3 rounded-md text-sm bg-gray-200" %>
     </div>
 
     <div>
