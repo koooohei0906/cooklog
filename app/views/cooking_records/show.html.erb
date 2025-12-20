@@ -25,6 +25,13 @@
         <%= simple_format(@cooking_record.memo) %>
       </div>
     </div>
+
+    <% if @cooking_record.photo.attached? %>
+      <div>
+        <p class="text-base font-bold">写真</p>
+        <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md" %>
+      </div>
+    <% end %>
   </div>
 
   <div class="mt-8 space-y-4">

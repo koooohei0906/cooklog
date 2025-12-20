@@ -31,6 +31,11 @@
     </div>
 
     <div>
+      <%= f.label :photo, '写真', class: "text-base font-bold" %><br>
+      <%= f.file_field :photo, accept: "image/*", class: "w-full mt-2 p-3 rounded-md text-sm bg-gray-200" %>
+    </div>
+
+    <div>
       <%= f.submit '保存する', class: "mt-4 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#FFC943]" %>
     </div>
   <% end %>
