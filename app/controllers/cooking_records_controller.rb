@@ -40,7 +40,7 @@ class CookingRecordsController < ApplicationController
   private
 
   def cooking_record_params
-    params.require(:cooking_record).permit(:cooked_on, :dish_name, :recipe_url, :memo)
+    params.require(:cooking_record).permit(:cooked_on, :dish_name, :recipe_url, :memo, :photo)
   end
 
   def set_cooking_record
