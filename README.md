@@ -79,5 +79,5 @@ SNSにあるたくさんのレシピを使用して毎日いろいろな料理�
 | 認証       | Devise                                                           |
 | テスト     | RSpec 6.1.5                                                      |
 | ストレージ | Active Storage, S3                                               |
-| その他 | heic2any                                               |
+| その他 | heic2any(HEIF/HEIC→JPEG変換)                              |
 | 今後要検討 | LINE Messaging API（リマインド通知の送信に利用予定）              |
