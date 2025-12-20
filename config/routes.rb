@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "pages#home"
-  resources :cooking_records
+  resources :cooking_records do
+    member do
+      delete :destroy_photo
+    end
+  end
   resource :dashboard, only: [ :show ]
   resource :setting, only: [ :show ]
 

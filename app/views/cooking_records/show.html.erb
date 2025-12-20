@@ -3,6 +3,15 @@
 
   <div class="p-4 rounded-md bg-gray-100 space-y-4">
     <div>
+      <p class="text-base font-bold">料理写真</p>
+      <% if @cooking_record.photo.attached? %>
+        <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md" %>
+      <% else %>
+        <p class="text-base">写真はありません</p>
+      <% end %>
+    </div>
+
+    <div>
       <p class="text-base font-bold">作った日</p>
       <p class="mt-1 text-base"><%= @cooking_record.cooked_on.strftime("%Y年%m月%d日") %></p>
     </div>
@@ -24,15 +33,6 @@
       <div class="mt-1 text-base">
         <%= simple_format(@cooking_record.memo) %>
       </div>
-    </div>
-
-    <div>
-      <p class="text-base font-bold">料理写真</p>
-      <% if @cooking_record.photo.attached? %>
-        <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md" %>
-      <% else %>
-        <p class="text-base">写真はありません</p>
-      <% end %>
     </div>
   </div>
 
