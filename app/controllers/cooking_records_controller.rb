@@ -1,6 +1,6 @@
 class CookingRecordsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cooking_record, only: %i[ show edit update destroy ]
+  before_action :set_cooking_record, only: %i[ show edit update destroy destroy_photo ]
 
   def new
     @cooking_record = CookingRecord.new
@@ -35,6 +35,11 @@ class CookingRecordsController < ApplicationController
   def destroy
     @cooking_record.destroy
     redirect_to cooking_records_path, notice: "料理記録を削除しました"
+  end
+
+  def destroy_photo
+    @cooking_record.photo.purge if @cooking_record.photo.attached?
+    redirect_to edit_cooking_record_path(@cooking_record), notice: "画像を削除しました"
   end
 
   private

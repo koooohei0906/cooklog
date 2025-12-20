@@ -10,6 +10,19 @@
   <% end %>
 
   <%= form_with model: @cooking_record, class: "space-y-4" do |f| %>
+    <% if @cooking_record.photo.attached? %>
+      <div>
+        <p class="text-base font-bold">料理写真</p>
+        <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md object-cover" %>
+        <%= link_to "画像を削除", destroy_photo_cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "画像を削除しますか？" }, class: "mt-2 py-3 block w-full flex items-center justify-center rounded-md font-bold bg-gray-200 text-[#D32F2F]" %> </div>
+    <% end %>
+
+    <div>
+      <%= f.label :photo, '写真の差し替え', class: "text-base font-bold" %><br>
+      <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "w-full mt-2" %>
+      <p class="text-sm text-gray-500 mt-1">JPEG / HEIF / HEIC（10MB未満）</p>
+    </div>
+
     <div>
       <%= f.label :cooked_on, '作った日', class: "text-base font-bold" %><br>
       <%= f.date_field :cooked_on, class: "w-full mt-2 p-3 rounded-md text-base bg-gray-200 text-gray-700" %>
