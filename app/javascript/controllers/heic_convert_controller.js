@@ -8,8 +8,9 @@ export default class extends Controller {
     const file = this.inputTarget.files?.[0]
     if (!file) return
 
-    // JPEGなどはそのまま
-    if (!isHeic(file)) return
+    // HEIC以外は処理を抜ける
+    const heic = await isHeic(file)
+    if (!heic) return
 
     try {
       // HEICだけをJPEGに変換
