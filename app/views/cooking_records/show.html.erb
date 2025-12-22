@@ -5,9 +5,19 @@
     <div>
       <p class="text-base font-bold">料理写真</p>
       <% if @cooking_record.photo.attached? %>
-        <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md" %>
+        <%= image_tag @cooking_record.photo, class: "my-2 rounded-md object-cover"%>
       <% else %>
-        <p class="text-base">写真はありません</p>
+        <div class="w-full aspect-[4/3] rounded-md bg-white p-4 mt-2">
+          <div class="h-full w-full rounded-md flex items-center justify-center">
+            <svg class="w-10 h-10 text-gray-400" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+          </div>
+        </div>
       <% end %>
     </div>
 
@@ -31,7 +41,11 @@
     <div>
       <p class="text-base font-bold">メモ</p>
       <div class="mt-1 text-base">
-        <%= simple_format(@cooking_record.memo) %>
+        <% if @cooking_record.memo.present? %>
+          <%= simple_format(@cooking_record.memo) %>
+        <% else %>
+          <p class="text-gray-500">メモがありません</p>
+        <% end %>
       </div>
     </div>
   </div>
@@ -42,4 +56,3 @@
   </div>
   <p class="mt-4 text-center text-sm"><%= link_to "一覧に戻る", cooking_records_path, class: "underline text-gray-700"%>
 </div>
-  
