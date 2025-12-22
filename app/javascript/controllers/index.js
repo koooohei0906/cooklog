@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import HamburgerController from "./hamburger_controller"
 application.register("hamburger", HamburgerController)
+
+import HeicConvertController from "./heic_convert_controller"
+application.register("heic-convert", HeicConvertController)
