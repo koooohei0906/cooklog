@@ -13,6 +13,10 @@
     <div>
       <%= f.label :photo, '料理写真', class: "text-base font-bold" %><br>
       <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", data: { controller: "heic-convert", "heic-convert-target": "input", action: "change->heic-convert#convert" }, class: "w-full mt-2 p-3 rounded-md text-sm bg-gray-200" %>
+      <p class="text-sm mt-1">
+        <span class="block text-gray-500">.jpg / .jpeg もしくは .heic /.heif ファイルを選択できます。</span>
+        <span class="block text-[#B94043]">1つのファイルのみ選択でき、最大サイズは10MBです</span>
+      </p>
     </div>
 
     <div>
