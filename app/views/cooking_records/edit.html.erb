@@ -19,7 +19,7 @@
 
     <div>
       <%= f.label :photo, '写真の差し替え', class: "text-base font-bold" %><br>
-      <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "w-full mt-2" %>
+      <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", data: { controller: "heic-convert", "heic-convert-target": "input", action: "change->heic-convert#convert" }, class: "w-full mt-2" %>
       <p class="text-sm text-gray-500 mt-1">JPEG / HEIF / HEIC（10MB未満）</p>
     </div>
 
