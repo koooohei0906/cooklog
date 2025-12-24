@@ -14,4 +14,4 @@ import HeicConvertController from "./heic_convert_controller"
 application.register("heic-convert", HeicConvertController)
 
 import PhotoDropzoneController from "./photo_dropzone_controller"
-application.register("photo_dropzone", PhotoDropzoneController)
+application.register("photo-dropzone", PhotoDropzoneController)
