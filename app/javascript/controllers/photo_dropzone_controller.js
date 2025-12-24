@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["input"]
+  static targets = ["input", "preview"]
 
   openDialog(event) {
     event.preventDefault()
@@ -9,9 +9,12 @@ export default class extends Controller {
   }
 
   onChange() {
-    // 一旦、動作確認目的の内容
     const file = this.inputTarget.files?.[0]
     if (!file) return
-    console.log("[photo-dropzone] selected:", file.name, file.type, file.size)
+
+    // プレビュー表示
+    const url = URL.createObjectURL(file)
+    this.previewTarget.src = url
+    this.previewTarget.classList.remove("hidden")
   }
 }

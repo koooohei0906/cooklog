@@ -25,6 +25,7 @@
           </p>
         </div>
         <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "hidden", data: { photo_dropzone_target: "input", action: "change->photo-dropzone#onChange" } %>
+        <img class="mt-4 hidden rounded-md object-cover" data-photo-dropzone-target="preview"/>
       </div>
 
       <!-- SP：ファイル選択 --> 
