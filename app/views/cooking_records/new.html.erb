@@ -24,7 +24,7 @@
             <span class="block text-[#B94043]">1つのファイルのみ選択でき、最大サイズは10MBです</span>
           </p>
         </div>
-        <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "hidden" %>
+        <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", data: { photo_dropzone_target: "input", action: "change->photo_dropzone#onChange" }, class: "hidden" %>
       </div>
 
       <!-- SP：ファイル選択 --> 
