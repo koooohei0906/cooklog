@@ -4,6 +4,18 @@ import { convertHeicFileToJpegFile } from "../lib/image/heic_to_jpeg"
 export default class extends Controller {
   static targets = ["input", "preview"]
 
+  // ページ全体で「dragover/drop」のブラウザ標準の挙動を無効化する（ファイルをドロップしてもブラウザ遷移しないようにする）
+  connect() {
+    this._preventDefaults = (e) => e.preventDefault()
+    document.addEventListener("dragover", this._preventDefaults)
+    document.addEventListener("drop", this._preventDefaults)
+  }
+
+  disconnect() {
+    document.removeEventListener("dragover", this._preventDefaults)
+    document.removeEventListener("drop", this._preventDefaults)
+  }
+
   openDialog(event) {
     event.preventDefault()
     this.inputTarget.click()
@@ -11,6 +23,19 @@ export default class extends Controller {
 
   onChange() {
     const files = this.inputTarget.files
+    this.handleFiles(files)
+  }
+
+  // ドロップゾーン内をドラッグ中、ゾーン内はドロップ可能とする
+  onDragOver(event) {
+    event.preventDefault()
+  }
+
+  // ドロップゾーン内でドロップした時、ドロップ時のブラウザ標準の挙動（ページ遷移してファイルを開く挙動）を無効化し、
+  // 代わりにドロップしたファイル情報を取得して自前の処理（handleFiles）に渡す
+  onDrop(event) {
+    event.preventDefault()
+    const files = event.dataTransfer?.files
     this.handleFiles(files)
   }
 
