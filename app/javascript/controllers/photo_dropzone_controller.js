@@ -6,6 +6,10 @@ export default class extends Controller {
 
   // ページ全体で「dragover/drop」のブラウザ標準の挙動を無効化する（ファイルをドロップしてもブラウザ遷移しないようにする）
   connect() {
+    this.initialSrc = this.previewTarget?.dataset?.initialSrc || ""
+    // メモリの解放が目的（画像を選び直すたびに URL.createObjectURL を作ることになってる
+    this.previewObjectUrl = null
+
     this._preventDefaults = (e) => e.preventDefault()
     document.addEventListener("dragover", this._preventDefaults)
     document.addEventListener("drop", this._preventDefaults)
@@ -88,6 +92,12 @@ export default class extends Controller {
   }
 
   showPreview(file) {
+    // 前回の画像URLがあれば無くしてメモリを解放する
+    if (this.previewObjectUrl) {
+      URL.revokeObjectURL(this.previewObjectUrl)
+      this.previewObjectUrl = null
+    }
+
     const url = URL.createObjectURL(file)
     this.previewTarget.src = url
     this.previewTarget.classList.remove("hidden")
@@ -101,8 +111,15 @@ export default class extends Controller {
 
   resetInput() {
     this.inputTarget.value = ""
-    // プレビューも隠す（新規作成はこれでOK、編集の既存画像は別途）
-    this.previewTarget.removeAttribute("src")
-    this.previewTarget.classList.add("hidden")
+    // バリデーションエラーでresetInputが動いた際の各画面のプレビューについて
+    if (this.initialSrc) {
+      // 編集：既存画像に戻す
+      this.previewTarget.src = this.initialSrc
+      this.previewTarget.classList.remove("hidden")
+    } else {
+      // 新規：消す
+      this.previewTarget.removeAttribute("src")
+      this.previewTarget.classList.add("hidden")
+    }
   }
 }
