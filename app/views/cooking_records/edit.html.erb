@@ -10,18 +10,43 @@
   <% end %>
 
   <%= form_with model: @cooking_record, class: "space-y-4" do |f| %>
-    <% if @cooking_record.photo.attached? %>
-      <div>
-        <p class="text-base font-bold">料理写真</p>
-        <%= image_tag @cooking_record.photo, class: "mt-2 w-full rounded-md object-cover" %>
-        <%= link_to "画像を削除", destroy_photo_cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "画像を削除しますか？" }, class: "mt-2 py-3 block w-full flex items-center justify-center rounded-md font-bold bg-gray-200 text-[#D32F2F]" %> </div>
-    <% end %>
+  <div data-controller="photo-dropzone">
+    <% initial_src = @cooking_record.photo.attached? ? url_for(@cooking_record.photo) : "" %>
 
+    <!-- 既存画像 -->
     <div>
-      <%= f.label :photo, '写真の差し替え', class: "text-base font-bold" %><br>
-      <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "w-full mt-2" %>
-      <p class="text-sm text-gray-500 mt-1">JPEG / HEIF / HEIC（10MB未満）</p>
+      <p class="text-base font-bold">料理写真</p>
+      <img class="mt-2 w-full rounded-md object-cover <%= initial_src.present? ? '' : 'hidden' %>" data-photo-dropzone-target="preview" data-initial-src="<%= initial_src %>" src="<%= initial_src %>"/>
+      <% if @cooking_record.photo.attached? %>
+        <%= link_to "画像を削除", destroy_photo_cooking_record_path(@cooking_record), data: { turbo_method: :delete, turbo_confirm: "画像を削除しますか？" }, class: "mt-2 py-3 block w-full flex items-center justify-center rounded-md font-bold bg-gray-200 text-[#D32F2F]" %>
+      <% end %>
     </div>
+
+    <!-- 写真の差し替え -->
+    <div class="mt-6">
+      <%= f.label :photo, '写真の差し替え', class: "text-base font-bold" %><br>
+
+      <!-- PC：ドロップゾーン -->
+      <div class="hidden md:block">
+        <div class="border-2 border-dashed border-gray-300 rounded-md bg-gray-50 mt-2 px-6 py-10 text-center cursor-pointer hover:bg-gray-100 transition" data-photo-dropzone-target="zone" data-action="click->photo-dropzone#openDialog dragover->photo-dropzone#onDragOver dragleave->photo-dropzone#onDragLeave drop->photo-dropzone#onDrop">
+          <p class="text-base font-semibold text-gray-800" data-photo-dropzone-target="title">ファイルを登録してください。</p>
+          <p class="mt-2 text-sm text-gray-600" data-photo-dropzone-target="subtitle">ファイルを選択するか、ドラッグ&ドロップしてください。</p>
+          <button type="button" class="mt-6 inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50">ファイルを選択</button>
+        </div>
+        <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "hidden", data: { photo_dropzone_target: "input", action: "change->photo-dropzone#onChange" } %>
+      </div>
+
+      <!-- SP：ファイル選択 -->
+      <div class="md:hidden">
+        <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif" %>
+      </div>
+
+      <p class="text-sm mt-1">
+        <span class="block text-gray-500">.jpg / .jpeg もしくは .heic /.heif ファイルを選択できます。</span>
+        <span class="block text-[#B94043]">1つのファイルのみ選択でき、最大サイズは10MBです</span>
+      </p>
+    </div>
+  </div>
 
     <div>
       <%= f.label :cooked_on, '作った日', class: "text-base font-bold" %><br>
