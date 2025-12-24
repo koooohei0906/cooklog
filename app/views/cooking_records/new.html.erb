@@ -14,8 +14,8 @@
       <%= f.label :photo, '料理写真', class: "text-base font-bold" %><br>
 
       <!-- PC：ドロップゾーン（ファイル選択機能も込み） --> 
-      <div class="hidden md:block">
-        <div class="border-2 border-dashed border-gray-300 rounded-md bg-gray-50 mt-2 px-6 py-10 text-center cursor-pointer hover:bg-gray-100 transition">
+      <div data-controller="photo-dropzone" class="hidden md:block">
+        <div data-action="click->photo-dropzone#openDialog" class="border-2 border-dashed border-gray-300 rounded-md bg-gray-50 mt-2 px-6 py-10 text-center cursor-pointer hover:bg-gray-100 transition">
           <p class="text-base font-semibold text-gray-800">ファイルを登録してください。</p>
           <p class="mt-2 text-sm text-gray-600">ファイルを選択するか、ドラッグ&ドロップしてください。</p>
           <button type="button" class="mt-6 inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50">ファイルを選択</button>
@@ -24,13 +24,13 @@
             <span class="block text-[#B94043]">1つのファイルのみ選択でき、最大サイズは10MBです</span>
           </p>
         </div>
-      </div>
-      <!-- SP：ファイル選択 --> 
-      <div class="md:hidden">
-        <%= f.file_field :photo %>
+        <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "hidden" %>
       </div>
 
-      <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", data: { controller: "heic-convert", "heic-convert-target": "input", action: "change->heic-convert#convert" }, class: "w-full mt-2 p-3 rounded-md text-sm bg-gray-200" %>
+      <!-- SP：ファイル選択 --> 
+      <div class="md:hidden">
+        <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif"%>
+      </div>
     </div>
 
     <div>
