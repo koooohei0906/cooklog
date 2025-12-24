@@ -12,3 +12,6 @@ application.register("hamburger", HamburgerController)
 
 import HeicConvertController from "./heic_convert_controller"
 application.register("heic-convert", HeicConvertController)
+
+import PhotoDropzoneController from "./photo_dropzone_controller"
+application.register("photo_dropzone", PhotoDropzoneController)
