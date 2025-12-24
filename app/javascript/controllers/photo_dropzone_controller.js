@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { convertHeicFileToJpegFile } from "../lib/image/heic_to_jpeg"
 
 export default class extends Controller {
-  static targets = ["input", "preview"]
+  static targets = ["input", "preview", "zone", "title", "subtitle"]
 
   // ページ全体で「dragover/drop」のブラウザ標準の挙動を無効化する（ファイルをドロップしてもブラウザ遷移しないようにする）
   connect() {
@@ -33,12 +33,18 @@ export default class extends Controller {
   // ドロップゾーン内をドラッグ中、ゾーン内はドロップ可能とする
   onDragOver(event) {
     event.preventDefault()
+    this.activateDragUI()
   }
 
-  // ドロップゾーン内でドロップした時、ドロップ時のブラウザ標準の挙動（ページ遷移してファイルを開く挙動）を無効化し、
-  // 代わりにドロップしたファイル情報を取得して自前の処理（handleFiles）に渡す
+  onDragLeave(event) {
+    event.preventDefault()
+    this.deactivateDragUI()
+  }
+
+  // ドロップゾーン内でドロップした時、ドロップ時のブラウザ標準の挙動（ページ遷移してファイルを開く挙動）を無効化して handleFiles に渡す
   onDrop(event) {
     event.preventDefault()
+    this.deactivateDragUI()
     const files = event.dataTransfer?.files
     this.handleFiles(files)
   }
@@ -99,6 +105,7 @@ export default class extends Controller {
     }
 
     const url = URL.createObjectURL(file)
+    this.previewObjectUrl = url
     this.previewTarget.src = url
     this.previewTarget.classList.remove("hidden")
   }
@@ -121,5 +128,18 @@ export default class extends Controller {
       this.previewTarget.removeAttribute("src")
       this.previewTarget.classList.add("hidden")
     }
+  }
+
+  // 以下メソッドはドロップゾーンをドラッグ中のUIを切り替えるところ！
+  activateDragUI() {
+    this.zoneTarget.classList.add("border-green-500", "bg-green-50")
+    this.titleTarget.textContent = "ファイルをアップロードします"
+    this.subtitleTarget.textContent = "ここにドロップしてください"
+  }
+
+  deactivateDragUI() {
+    this.zoneTarget.classList.remove("border-green-500", "bg-green-50")
+    this.titleTarget.textContent = "ファイルを登録してください。"
+    this.subtitleTarget.textContent = "ファイルを選択するか、ドラッグ&ドロップしてください。"
   }
 }

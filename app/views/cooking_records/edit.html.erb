@@ -28,9 +28,9 @@
 
       <!-- PC：ドロップゾーン -->
       <div class="hidden md:block">
-        <div class="border-2 border-dashed border-gray-300 rounded-md bg-gray-50 mt-2 px-6 py-10 text-center cursor-pointer hover:bg-gray-100 transition" data-action="click->photo-dropzone#openDialog dragover->photo-dropzone#onDragOver drop->photo-dropzone#onDrop">
-          <p class="text-base font-semibold text-gray-800">ファイルを登録してください。</p>
-          <p class="mt-2 text-sm text-gray-600">ファイルを選択するか、ドラッグ&ドロップしてください。</p>
+        <div class="border-2 border-dashed border-gray-300 rounded-md bg-gray-50 mt-2 px-6 py-10 text-center cursor-pointer hover:bg-gray-100 transition" data-photo-dropzone-target="zone" data-action="click->photo-dropzone#openDialog dragover->photo-dropzone#onDragOver dragleave->photo-dropzone#onDragLeave drop->photo-dropzone#onDrop">
+          <p class="text-base font-semibold text-gray-800" data-photo-dropzone-target="title">ファイルを登録してください。</p>
+          <p class="mt-2 text-sm text-gray-600" data-photo-dropzone-target="subtitle">ファイルを選択するか、ドラッグ&ドロップしてください。</p>
           <button type="button" class="mt-6 inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50">ファイルを選択</button>
         </div>
         <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "hidden", data: { photo_dropzone_target: "input", action: "change->photo-dropzone#onChange" } %>
