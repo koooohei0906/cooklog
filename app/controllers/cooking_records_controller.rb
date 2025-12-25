@@ -17,7 +17,7 @@ class CookingRecordsController < ApplicationController
   end
 
   def index
-    @cooking_records = current_user.cooking_records.order(cooked_on: :desc)
+    @cooking_records = current_user.cooking_records.order(cooked_on: :desc, created_at: :desc)
   end
 
   def show; end
