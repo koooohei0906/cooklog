@@ -9,7 +9,7 @@
           <%= link_to cooking_record_path(cooking_record), class: "block border" do %><!-- TODO: ボーダー後から消す -->
             <div class="relative">
               <!-- 日付オーバーレイ -->
-              <div class="absolute top-1 left-1 z-10 rounded-md bg-white/80 px-1.5 py-0.5 text-sm font-semibold text-gray-900">
+              <div class="absolute top-1 left-1 z-10 rounded-md bg-white/80 px-1.5 py-0.5 text-xs font-semibold text-gray-900">
                 <%= cooking_record.cooked_on.strftime("%m/%d") %>
               </div>
               <!-- サムネ -->
