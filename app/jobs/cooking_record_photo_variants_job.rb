@@ -1,8 +1,8 @@
 class CookingRecordPhotoVariantsJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    record = CookingRecord.finy_by(id: cooking_record_id)
+  def perform(cooking_record_id)
+    record = CookingRecord.find_by(id: cooking_record_id)
     return unless record && record.photo.attached?
 
     # 一覧用のサムネを事前生成！
