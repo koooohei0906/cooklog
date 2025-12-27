@@ -67,3 +67,4 @@ gem "devise-i18n"
 
 # image_processingの導入
 gem "image_processing", "~> 1.2"
+gem "ruby-vips" # image_processing(libvips)用に明示
