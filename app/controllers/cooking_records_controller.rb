@@ -10,6 +10,7 @@ class CookingRecordsController < ApplicationController
     @cooking_record = current_user.cooking_records.new(cooking_record_params)
 
     if @cooking_record.save
+      enqueue_photo_variants(@cooking_record)
       redirect_to dashboard_path, notice: "料理記録を登録しました"
     else
       render :new, status: :unprocessable_entity
@@ -26,7 +27,8 @@ class CookingRecordsController < ApplicationController
 
   def update
     if @cooking_record.update(cooking_record_params)
-      redirect_to @cooking_record, notice: "料理記録を編集しました"
+      enqueue_photo_variants(@cooking_record)
+      redirect_to @cooking_record, notice: "料理記録を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -50,5 +52,9 @@ class CookingRecordsController < ApplicationController
 
   def set_cooking_record
     @cooking_record = current_user.cooking_records.find(params[:id])
+  end
+
+  def enqueue_photo_variants(record)
+    CookingRecordPhotoVariantsJob.perform_later(record.id) if record.photo.attached?
   end
 end
