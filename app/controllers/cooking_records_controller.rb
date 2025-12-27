@@ -27,7 +27,8 @@ class CookingRecordsController < ApplicationController
 
   def update
     if @cooking_record.update(cooking_record_params)
-      enqueue_photo_variants(@cooking_record)
+      # 画像が変更されていないupdateではジョブを走らせないようにする
+      enqueue_photo_variants(@cooking_record) if params.dig(:cooking_record, :photo).present?
       redirect_to @cooking_record, notice: "料理記録を更新しました"
     else
       render :edit, status: :unprocessable_entity
@@ -55,9 +56,6 @@ class CookingRecordsController < ApplicationController
   end
 
   def enqueue_photo_variants(record)
-    # 画像が変更されていないupdateでジョブを走らせないようにする
-    return unless params.dig(:cooking_record, :photo).present?
-
     CookingRecordPhotoVariantsJob.perform_later(record.id) if record.photo.attached?
   end
 end
