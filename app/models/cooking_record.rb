@@ -12,6 +12,13 @@ class CookingRecord < ApplicationRecord
   # サムネサイズ
   THUMB_SIZE = 240
 
+  # サムネをリサイズ&WebP化
+  def photo_thumb
+    return unless photo.attached?
+
+    photo.variant(resize_to_fill: [THUMB_SIZE, THUMB_SIZE], format: :webp)
+  end
+
   private
 
   def photo_content_type_and_size
@@ -27,12 +34,5 @@ class CookingRecord < ApplicationRecord
     unless allowed.include?(photo.blob.content_type)
       errors.add(:photo, "はJPEGまたはHEIC/HEIF形式のみ対応しています")
     end
-  end
-
-  # サムネをリサイズ&WebP化
-  def photo_thumb
-    return unless photo.attached?
-
-    photo.variant(resize_to_fill: [THUMB_SIZE, THUMB_SIZE], format: :webp)
   end
 end
