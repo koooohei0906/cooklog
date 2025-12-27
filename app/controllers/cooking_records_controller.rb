@@ -55,6 +55,9 @@ class CookingRecordsController < ApplicationController
   end
 
   def enqueue_photo_variants(record)
+    # 画像が変更されていないupdateでジョブを走らせないようにする
+    return unless params.dig(:cooking_record, :photo).present?
+
     CookingRecordPhotoVariantsJob.perform_later(record.id) if record.photo.attached?
   end
 end
