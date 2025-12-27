@@ -16,7 +16,7 @@ class CookingRecord < ApplicationRecord
   def photo_thumb
     return unless photo.attached?
 
-    photo.variant(resize_to_fill: [THUMB_SIZE, THUMB_SIZE], format: :webp)
+    photo.variant(resize_to_fill: [ THUMB_SIZE, THUMB_SIZE ], format: :webp)
   end
 
   private
