@@ -14,6 +14,14 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  redis:
+    image: redis:7
+    restart: always
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "6379:6379"
+
   web:
     build:
       context: .
@@ -27,11 +35,35 @@ services:
       - node_modules:/cooklog/node_modules
     environment:
       TZ: Asia/Tokyo
+      REDIS_URL: redis://redis:6379/0
     ports:
       - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_started
+
+  sidekiq:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bash -c "bundle install && bundle exec sidekiq"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/cooklog
+      - bundle_data:/usr/local/bundle:cached
+      - node_modules:/cooklog/node_modules
+    environment:
+      TZ: Asia/Tokyo
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
 volumes:
   bundle_data:
   postgresql_data:
