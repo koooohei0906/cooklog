@@ -68,3 +68,6 @@ gem "devise-i18n"
 # image_processingの導入
 gem "image_processing", "~> 1.2"
 gem "ruby-vips" # image_processing(libvips)用に明示
+
+# Sidekiqの導入（開発/本番の両環境でSidekiqを利用する）
+gem "sidekiq"
