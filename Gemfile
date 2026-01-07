@@ -71,3 +71,6 @@ gem "ruby-vips" # image_processing(libvips)用に明示
 
 # Sidekiqの導入（開発/本番の両環境でSidekiqを利用する）
 gem "sidekiq"
+
+# S3へアップロードするためのgem
+gem "aws-sdk-s3", require: false
