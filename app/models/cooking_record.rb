@@ -12,7 +12,7 @@ class CookingRecord < ApplicationRecord
   # サムネサイズ
   THUMB_SIZE = 240
 
-  # サムネをリサイズ&WebP化
+  # サムネをリサイズ&WebP化（返すのはActiveStorage::Variantオブジェクト）
   def photo_thumb
     return unless photo.attached?
 
