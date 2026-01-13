@@ -1,3 +1,14 @@
+<template id="thumb-processing-placeholder">
+  <div class="w-full aspect-square rounded-md bg-white flex flex-col items-center justify-center text-gray-400">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"
+      fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+    <p class="mt-2 text-sm font-semibold">準備中</p>
+  </div>
+</template>
+
 <div class="max-w-xl mx-auto px-4">
   <h1 class="mb-4 block max-w-xl mx-auto text-lg font-semibold ">料理記録の一覧</h1>
   <%= link_to 'ホームに戻る', dashboard_path, class: "mb-5 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#212121]" %>
@@ -14,7 +25,7 @@
               </div>
               <!-- サムネ -->
               <% if cooking_record.photo.attached? %>
-                <%= image_tag cooking_record.photo_thumb, class: "w-full aspect-square rounded-md object-cover"%>
+                <%= image_tag cooking_record.photo_thumb, class: "w-full aspect-square rounded-md object-cover" , data: { controller: "thumb-placeholder", action: "error->thumb-placeholder#replace", thumb_placeholder_template_id_value: "thumb-processing-placeholder" }%>
               <% else %>
                 <div class="w-full aspect-square rounded-md bg-white flex items-center justify-center">
                   <svg class="w-8 h-8 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
