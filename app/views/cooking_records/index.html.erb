@@ -24,7 +24,7 @@
                 <%= cooking_record.cooked_on.strftime("%m/%d") %>
               </div>
               <!-- サムネ -->
-              <% if cooking_record.photo.attached? %>
+              <% if cooking_record.thumb.attached? %>
                 <%= image_tag cooking_record.thumb, class: "w-full aspect-square rounded-md object-cover" , data: { controller: "thumb-placeholder", action: "error->thumb-placeholder#replace", thumb_placeholder_template_id_value: "thumb-processing-placeholder" }%>
               <% else %>
                 <div class="w-full aspect-square rounded-md bg-white flex items-center justify-center">
