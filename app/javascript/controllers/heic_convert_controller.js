@@ -17,7 +17,7 @@ export default class extends Controller {
       const jpegBlob = await heicTo({
         blob: file,
         type: "image/jpeg",
-        quality: 0.9,
+        quality: 1.0, // 明示的にしておく
       })
 
       // input.files を「変換後JPEG」に差し替える

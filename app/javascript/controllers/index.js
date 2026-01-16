@@ -12,3 +12,6 @@ application.register("hamburger", HamburgerController)
 
 import PhotoDropzoneController from "./photo_dropzone_controller"
 application.register("photo-dropzone", PhotoDropzoneController)
+
+import ThumbPlaceholderController from "./thumb_placeholder_controller"
+application.register("thumb-placeholder", ThumbPlaceholderController)

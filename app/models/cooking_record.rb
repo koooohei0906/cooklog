@@ -7,17 +7,9 @@ class CookingRecord < ApplicationRecord
   validates :memo, length: { maximum: 255, message: "255文字以内で入力してください" }
 
   has_one_attached :photo
+  has_one_attached :thumb
+
   validate :photo_content_type_and_size
-
-  # サムネサイズ
-  THUMB_SIZE = 240
-
-  # サムネをリサイズ&WebP化
-  def photo_thumb
-    return unless photo.attached?
-
-    photo.variant(resize_to_fill: [ THUMB_SIZE, THUMB_SIZE ], format: :webp)
-  end
 
   private
 

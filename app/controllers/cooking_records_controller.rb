@@ -9,6 +9,10 @@ class CookingRecordsController < ApplicationController
   def create
     @cooking_record = current_user.cooking_records.new(cooking_record_params)
 
+    if (upload = params.dig(:cooking_record, :photo)).present?
+      attach_optimized_photo(@cooking_record, upload)
+    end
+
     if @cooking_record.save
       enqueue_photo_variants(@cooking_record)
       redirect_to dashboard_path, notice: "料理記録を登録しました"
@@ -47,6 +51,9 @@ class CookingRecordsController < ApplicationController
 
   private
 
+  MAX_LONG_EDGE = 2048
+  JPEG_QUALITY  = 85
+
   def cooking_record_params
     params.require(:cooking_record).permit(:cooked_on, :dish_name, :recipe_url, :memo, :photo)
   end
@@ -57,5 +64,14 @@ class CookingRecordsController < ApplicationController
 
   def enqueue_photo_variants(record)
     CookingRecordPhotoVariantsJob.perform_later(record.id) if record.photo.attached?
+  end
+
+  def attach_optimized_photo(record, upload)
+    upload.open do |file|
+      processed = ImageProcessing::Vips.source(file.path).resize_to_limit(MAX_LONG_EDGE, MAX_LONG_EDGE).saver(quality: JPEG_QUALITY).call
+      record.photo.attach(io: File.open(processed.path), filename: "#{File.basename(upload.original_filename, '.*')}.jpg", content_type: "image/jpeg")
+    ensure
+      processed&.close!
+    end
   end
 end
