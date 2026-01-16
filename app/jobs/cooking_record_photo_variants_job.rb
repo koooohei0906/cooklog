@@ -3,7 +3,7 @@ class CookingRecordPhotoVariantsJob < ApplicationJob
 
   # サムネサイズ
   THUMB_SIZE = 240
-  
+
 
   def perform(cooking_record_id)
     record = CookingRecord.find_by(id: cooking_record_id)

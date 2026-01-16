@@ -8,7 +8,7 @@ class CookingRecord < ApplicationRecord
 
   has_one_attached :photo
   has_one_attached :thumb
-  
+
   validate :photo_content_type_and_size
 
   private

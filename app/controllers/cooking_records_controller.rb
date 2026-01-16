@@ -52,7 +52,7 @@ class CookingRecordsController < ApplicationController
   private
 
   MAX_LONG_EDGE = 2048
-  JPEG_QUALITY  = 85 
+  JPEG_QUALITY  = 85
 
   def cooking_record_params
     params.require(:cooking_record).permit(:cooked_on, :dish_name, :recipe_url, :memo, :photo)
