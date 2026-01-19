@@ -125,6 +125,10 @@ export default class extends Controller {
 
   resetInput(inputEl) {
     if (inputEl) inputEl.value = ""
+
+    // ドラッグ中UIを戻す（メソッドがある前提）
+    if (typeof this.deactivateDragUI === "function") this.deactivateDragUI()
+
     // バリデーションエラーでresetInputが動いた際の各画面のプレビューについて
     if (this.initialSrc) {
       // 編集：既存画像に戻す
@@ -135,6 +139,8 @@ export default class extends Controller {
       this.previewTarget.removeAttribute("src")
       this.previewTarget.classList.add("hidden")
     }
+
+    this.hideOverlay()
   }
 
   // 以下メソッドはドロップゾーンをドラッグ中のUIを切り替えるところ！
