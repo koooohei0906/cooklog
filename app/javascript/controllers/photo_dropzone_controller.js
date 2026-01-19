@@ -22,7 +22,7 @@ export default class extends Controller {
 
   openDialog(event) {
     event.preventDefault()
-    this.inputTarget.click()
+    this.inputPcTarget.click()
   }
 
   onChange(event) {
