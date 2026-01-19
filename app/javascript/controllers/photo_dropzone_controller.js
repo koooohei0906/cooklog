@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { convertHeicFileToJpegFile } from "../lib/image/heic_to_jpeg"
 
 export default class extends Controller {
-  static targets = ["input", "preview", "zone", "title", "subtitle", "overlay"]
+  static targets = ["inputPc", "inputSp", "preview", "zone", "title", "subtitle", "overlay"]
 
   // ページ全体で「dragover/drop」のブラウザ標準の挙動を無効化する（ファイルをドロップしてもブラウザ遷移しないようにする）
   connect() {
@@ -25,9 +25,10 @@ export default class extends Controller {
     this.inputTarget.click()
   }
 
-  onChange() {
-    const files = this.inputTarget.files
-    this.handleFiles(files)
+  onChange(event) {
+    const inputEl = event.target
+    const files = inputEl.files
+    this.handleFiles(files, inputEl)
   }
 
   // ドロップゾーン内をドラッグ中、ゾーン内はドロップ可能とする
@@ -46,18 +47,18 @@ export default class extends Controller {
     event.preventDefault()
     this.deactivateDragUI()
     const files = event.dataTransfer?.files
-    this.handleFiles(files)
+    this.handleFiles(files, this.inputPcTarget)
   }
 
   // バリデーション＋プレビュー表示
-  async handleFiles(files) {
+  async handleFiles(files, inputEl) {
     // ファイルが無いor空なら処理を終わらせる
     if (!files?.length) return
 
     // ① 複数ファイルは拒否
     if (files.length > 1) {
       alert("ファイルは1つだけ選択してください。")
-      this.resetInput()
+      this.resetInput(inputEl)
       return
     }
 
@@ -68,7 +69,7 @@ export default class extends Controller {
     const maxUploadSizeBytes = 10 * 1024 * 1024
     if (file.size >= maxUploadSizeBytes) {
       alert("ファイルサイズは10MB未満にしてください")
-      this.resetInput()
+      this.resetInput(inputEl)
       return
     }
 
@@ -76,27 +77,27 @@ export default class extends Controller {
     const allowedPhotoMimeTypes = ["image/jpeg", "image/heic", "image/heif"]
     if (!allowedPhotoMimeTypes.includes(file.type)) {
       alert("jpeg / heic / heif の画像のみ選択できます。")
-      this.resetInput()
+      this.resetInput(inputEl)
       return
     }
 
     // HEICだけJPEG変換＋添付画像の差し替え
-    if (file.type === "image/heic" || file.type === "image/heif" ) {
+    if (file.type === "image/heic" || file.type === "image/heif") {
+      this.showOverlay()
       try {
         const converted = await convertHeicFileToJpegFile(file, { quality: 0.9 })
         if (converted) {
           file = converted
-          this.replaceInputFiles(file)
+          this.replaceInputFiles(file, inputEl)
         }
       } catch (e) {
         alert("HEIC画像の変換に失敗しました。別の画像を選択してください。")
-        this.resetInput()
+        this.resetInput(inputEl)
         return
       } finally {
         this.hideOverlay()
       }
     }
-    
 
     // 全て通過したらプレビュー表示へ繋ぐ
     this.showPreview(file)
@@ -115,14 +116,15 @@ export default class extends Controller {
     this.previewTarget.classList.remove("hidden")
   }
 
-  replaceInputFiles(file) {
+  replaceInputFiles(file, inputEl) {
     const dt = new DataTransfer()
     dt.items.add(file)
-    this.inputTarget.files = dt.files
+    inputEl.files = dt.files
   }
 
-  resetInput() {
-    this.inputTarget.value = ""
+
+  resetInput(inputEl) {
+    if (inputEl) inputEl.value = ""
     // バリデーションエラーでresetInputが動いた際の各画面のプレビューについて
     if (this.initialSrc) {
       // 編集：既存画像に戻す
