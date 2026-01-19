@@ -15,6 +15,25 @@
 
       <!-- PC：ドロップゾーン（ファイル選択機能も込み） --> 
       <div class="hidden md:block" data-controller="photo-dropzone">
+        <!-- 全画面オーバーレイ（初期は非表示） -->
+        <div class="fixed inset-0 z-50 hidden" data-photo-dropzone-target="overlay" aria-hidden="true">
+          <div class="absolute inset-0 bg-black/40"></div>
+
+          <div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+            <div class="scale-125" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="#ffc943">
+                <circle cx="12" cy="12" r="12" opacity=".5">
+                  <animate attributeName="r" values="0;12;0" keySplines="0.42 0.0 0.58 1.0" dur="2s" repeatCount="indefinite" begin="0"/>
+                </circle>
+                <circle cx="12" cy="12" r="0" opacity=".5">
+                  <animate attributeName="r" values="0;12;0" keySplines="0.42 0.0 0.58 1.0" dur="2s" repeatCount="indefinite" begin="1s"/>
+                </circle>
+              </svg>
+            </div>
+
+            <p class="text-white text-sm font-medium">処理中...</p>
+          </div>
+        </div>
         <div class="border-2 border-dashed border-gray-300 rounded-md bg-gray-50 mt-2 px-6 py-10 text-center cursor-pointer hover:bg-gray-100 transition" data-photo-dropzone-target="zone" data-action="click->photo-dropzone#openDialog dragover->photo-dropzone#onDragOver dragleave->photo-dropzone#onDragLeave drop->photo-dropzone#onDrop">
           <p class="text-base font-semibold text-gray-800" data-photo-dropzone-target="title">ファイルを登録してください。</p>
           <p class="mt-2 text-sm text-gray-600" data-photo-dropzone-target="subtitle">ファイルを選択するか、ドラッグ&ドロップしてください。</p>
