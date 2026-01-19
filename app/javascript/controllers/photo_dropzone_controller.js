@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 import { convertHeicFileToJpegFile } from "../lib/image/heic_to_jpeg"
 
 export default class extends Controller {
-  static targets = ["input", "preview", "zone", "title", "subtitle"]
+  static targets = ["input", "preview", "zone", "title", "subtitle", "overlay"]
 
   // ページ全体で「dragover/drop」のブラウザ標準の挙動を無効化する（ファイルをドロップしてもブラウザ遷移しないようにする）
   connect() {
@@ -81,17 +81,22 @@ export default class extends Controller {
     }
 
     // HEICだけJPEG変換＋添付画像の差し替え
-    try {
-      const converted = await convertHeicFileToJpegFile(file, { quality: 0.9 })
-      if (converted) {
-        file = converted
-        this.replaceInputFiles(file)
+    if (file.type === "image/heic" || file.type === "image/heif" ) {
+      try {
+        const converted = await convertHeicFileToJpegFile(file, { quality: 0.9 })
+        if (converted) {
+          file = converted
+          this.replaceInputFiles(file)
+        }
+      } catch (e) {
+        alert("HEIC画像の変換に失敗しました。別の画像を選択してください。")
+        this.resetInput()
+        return
+      } finally {
+        this.hideOverlay()
       }
-    } catch(e) {
-      alert("HEIC画像の変換に失敗しました。別の画像を選択してください。")
-      this.resetInput()
-      return
     }
+    
 
     // 全て通過したらプレビュー表示へ繋ぐ
     this.showPreview(file)
@@ -141,5 +146,18 @@ export default class extends Controller {
     this.zoneTarget.classList.remove("border-green-500", "bg-green-50")
     this.titleTarget.textContent = "ファイルを登録してください。"
     this.subtitleTarget.textContent = "ファイルを選択するか、ドラッグ&ドロップしてください。"
+  }
+
+  // 以下メソッドはHEIC→JPEG変換中のアニメーション用
+  showOverlay() {
+    if (!this.hasOverlayTarget) return
+    this.overlayTarget.classList.remove("hidden")
+    this.overlayTarget.setAttribute("aria-hidden", "false")
+  }
+
+  hideOverlay() {
+    if (!this.hasOverlayTarget) return
+    this.overlayTarget.classList.add("hidden")
+    this.overlayTarget.setAttribute("aria-hidden", "true")
   }
 }
