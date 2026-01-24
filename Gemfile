@@ -74,3 +74,6 @@ gem "sidekiq"
 
 # S3へアップロードするためのgem
 gem "aws-sdk-s3", require: false
+
+# GoogleのOAuth2を利用した認証を提供するためのGem
+gem 'omniauth-google-oauth2'
