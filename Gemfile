@@ -77,5 +77,5 @@ gem "aws-sdk-s3", require: false
 
 # GoogleのOAuth2を利用した認証を提供するためのGem
 # Omniouthを使用する際にCSRF攻撃からアプリケーションを保護するためのgem
-gem 'omniauth-google-oauth2'
-gem 'omniauth-rails_csrf_protection'
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
