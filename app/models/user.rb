@@ -9,7 +9,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? } # 通常ユーザーはスルーしGoogkeログインユーザーだけバリデーションを動かすためのif
 
-
   # providerとuidを使ってユーザーを検索し、存在しなければ新規作成する
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
