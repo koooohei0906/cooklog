@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  get "settings/show"
+  root "pages#home"
+
+  post "pages/guest_sign_in", to: "pages#new_guest"
+  
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
-  root "pages#home"
   resources :cooking_records do
     member do
       delete :destroy_photo

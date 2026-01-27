@@ -31,6 +31,11 @@
     <div class="mt-6 text-center text-sm">
       アカウント作成は<%= link_to "こちら", new_registration_path(resource_name), class: "ml-1 underline" %>
     </div>
+
+    <!-- ゲストログイン -->
+    <div class="mt-6 text-center w-full py-3 rounded-md font-bold bg-[#FFC943] text-white">
+      ゲストログイン<%= link_to "こちら", pages_guest_sign_in_path, data: { turbo_method: :post }, class: "ml-1 underline" %>
+    </div>
   </div>
 </div>
 <%= link_to '戻る', root_path, class: "mt-4 py-3 block w-full max-w-xl mx-auto flex items-center justify-center rounded-md font-bold text-white bg-[#212121]" %>
