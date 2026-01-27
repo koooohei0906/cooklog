@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "pages#home"
 
   post "pages/guest_sign_in", to: "pages#new_guest"
-  
+
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :cooking_records do
