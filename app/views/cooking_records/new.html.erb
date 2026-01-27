@@ -45,7 +45,7 @@
           <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", class: "hidden", data: { photo_dropzone_target: "inputPc", action: "change->photo-dropzone#onChange" } %>
         </div>
         <!-- SP：ファイル選択 -->
-        <div class="md:hidden">
+        <div class="md:hidden mt-2">
           <%= f.file_field :photo, accept: "image/jpeg,image/heic,image/heif", data: { photo_dropzone_target: "inputSp", action: "change->photo-dropzone#onChange" } %>
         </div>
         <!-- 共通：プレビュー -->

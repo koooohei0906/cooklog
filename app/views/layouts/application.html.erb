@@ -33,6 +33,9 @@
 
       <!-- メイン -->
       <main class="p-4 pt-16 pb-16 md:pb-0 flex-1">
+        <% flash.each do |type, message| %>
+          <%= message %>
+        <% end %>
         <%= yield %>
       </main>
     </div>
@@ -48,6 +51,9 @@
 
     <!-- メイン -->
     <main class="px-4 py-16">
+      <% flash.each do |type, message| %>
+        <%= message %>
+      <% end %>
       <%= yield %>
     </main>
 
